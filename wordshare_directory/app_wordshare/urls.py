@@ -4,5 +4,5 @@ from . import views
 app_name = 'app_wordshare'
 
 urlpatterns = [
-    path('', views.Index, name='index')
+    path('', views.index, name='index')
 ]

@@ -1,5 +1,5 @@
 """
-ASGI config for app_wordshare project.
+ASGI config for config_wordshare project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'app_wordshare')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'config_wordshare.settings')
 
 application = get_asgi_application()
