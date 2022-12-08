@@ -1,7 +1,10 @@
 from django.urls import path
 
-from .views import SignUpView
+from . import views
+
+app_name = 'users_wordshare'
 
 urlpatterns = [
-    path('signup/', SignUpView.as_view, name='signup'),
+    path('signup/', views.SignUpView.as_view(), name='signup'),
+    path('<str:username>/', views.UserProfileView.as_view(), name='profile'),
 ]
