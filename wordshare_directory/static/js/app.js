@@ -3,8 +3,8 @@ const vm = new Vue({
     delimiters: ['[[',']]'],
     data: {
         inputWord: '',
-
         responseData: {},
+        savedWord: {},
     },
     methods: {
         getWordDefinition: function() {
@@ -21,6 +21,23 @@ const vm = new Vue({
                 console.log(error.response),
                 console.log(error.response.data)
             })
-        }
+        },
+        saveWordDefinition: function() {
+            this.savedWord = this.responseData
+            console.log(this.savedWord)
+            axios({
+                method: 'POST',
+                url: 'apis/v1/words',
+                data: this.savedWord,
+                headers: {
+                    'X-CSRFToken': this.csrf_token,
+                },
+            }).then((response) => {
+                console.log(response.data)
+            }).catch(error => {
+                console.log(error.response),
+                console.log(error.response.data)
+            })
+        },
     }
 })

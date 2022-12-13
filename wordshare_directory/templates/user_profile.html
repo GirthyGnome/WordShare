@@ -1,7 +1,14 @@
-{% extends 'home.html' %}
+{% extends 'base.html' %}
 
+{% block title %}-{{ user.username | capfirst }}{% endblock title %}
 {% block content %}
 
-<h1>Goodbye, Fellow Gnomes</h1>
+    <h1>{{ user_profile.username }}</h1>
+
+    {% for word in user_profile.words.all %}
+        <div class="saved-words">
+            {{ word }}
+        </div>
+    {% endfor %}
 
 {% endblock content %}
