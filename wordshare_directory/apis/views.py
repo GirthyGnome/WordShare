@@ -1,4 +1,4 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, generics
 from django.contrib.auth import get_user_model
 
 
@@ -13,6 +13,11 @@ class UserDefinedWordViewSet(viewsets.ModelViewSet):
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = get_user_model().objects.all()
     serializer_class = UserSerializer
+class CurrentUserView(generics.RetrieveAPIView):
+    serializer_class = UserSerializer
+    def get_object(self):
+        print('current user endpoint', self.request.user)
+        return self.request.user
 
 
 

@@ -1,39 +1,51 @@
 {% extends 'base.html' %} 
 
 {% block title %}-Home{% endblock title %}
+
 {% block content %}
+<body>
+
+  <div id='app'>
+
     <div id='user_authentication'>
+      <div id='headers'>
+        <h3>welcome to</h3>
+        <h1>WordShare</h1>
+      </div>
       {% if user.is_authenticated %}
-        <h1>Welcome {{ user.username | capfirst }}!</h1>
-        <p><a href="{% url 'users_wordshare:profile' user.username %}">Profile</a><p>
+        <h3><a href="{% url 'users_wordshare:profile' user.username %}" id='hyperlinks'>{{ user.username }}</a></h3>
         {% comment %} <a href="{% url 'home' %}">Home</a> {% endcomment %}
-        <p><a href="{% url 'logout' %}">Logout</a><p>
+        <p><a href="{% url 'logout' %}" id='hyperlinks'>Logout</a><p>
       {% else %}
-        <h1>Welcome, visitor!</h1>
-        <p>You are not logged in. <a href="{% url 'login' %}">Login</a> <a href="{% url 'users_wordshare:signup' %}">Sign Up</a></p>
+        <p>You are not logged in<br><br><a href="{% url 'login' %}">Login</a><br><br><a href="{% url 'users_wordshare:signup' %}">Sign Up</a></p>
       {% endif %}   
     </div>
 
-    <div id='app'>
-      <div id="search_bar">
-        <p>Search Definition for:<input v-model="inputWord">
-        <button @click="getWordDefinition">Search</button>
+    <div id="word_display">
+
+      <div id='search_box'>
+        <div id='input'>
+          <input v-model="inputWord" placeholder='type in a word'>
+        </div>
+        <br><button @click="getWordDefinition" id='buttons'>search</button>
       </div>
 
       <div id="search_results">
-        <dl v-for="data in responseData">
-          <b><dt>Definition:</dt></b>
-          <dd>[[ data.shortdef ]]</dd><br>
-          <b><dt>Pronounciation:</dt></b>
-          <dd>[[ data.hwi.hw ]]</dd><br>
-          <b><dt>Date of Origin:</dt></b>
-          <dd>[[ data.date ]]</dd><br>
-          <b><dt>Etymology:</dt></b>
-          <dd>[[ data.et ]]</dd><br>
+        <dl v-for="data in currentWord">
+          <u><b><p>Definition</p></b></u>
+          <p>[[ data.shortdef ]]</p>
+          <u><b><p>Pronounciation</p></b></u>
+          <p>[[ data.hwi.hw ]]</p>
+          <u><b><p>Date of Origin</p></b></u>
+          <p>[[ data.date ]]</p>
+          <u><b><p>Etymology</p></b></u>
+          <p>[[ data.et ]]</p> 
+          <div id='buttons'>
+            <button @click='saveWordDefinition'>+ add to personal list</button>
+          </div>
         </dl>
       </div>
-      <div id='save_definition'>
-        <button @click='saveWordDefinition'>+ add to personal list</button>
-      </div>
     </div>
+  </div>
+</body>
 {% endblock content %}

@@ -1,0 +1,117 @@
+body {
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+    text-align: center;
+    font-family: monospace;
+    font-size: 1.5em;
+    background-image: url('/static/images/books.jpg');
+    background-repeat:no-repeat;
+    background-size: auto;
+    color: #ffffff;
+    margin: auto;
+    padding: 1em;
+    overflow-wrap: break-word;
+}
+::placeholder {
+   text-align: center; 
+}
+#app {
+    background-size: auto;
+}
+#user_authentication {
+    margin-top: 1em;
+    margin: 2em;
+    background-color: rgba(144, 70, 70, 0.2);
+    border-radius: 2em;
+    padding: .25em;
+}
+#word_display {
+    background-color:rgba(66, 66, 66, 0.3);
+    border-radius: 2em;
+    padding: 1em;
+    text-align: center;
+    margin: 2em;
+}
+#buttons {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: rgba(205, 141, 141, 0.5);
+    color: #ffffff;
+    padding-left: 2.3rem;
+    padding-right: 2.3rem;
+    transition: all .5s ease;
+    border-radius: 1em;
+    border-color: rgba(66, 66, 66, 0.5);
+}
+#buttons:hover {
+    box-shadow: 0 0 2em rgba(196, 95, 95, 0.919);
+}
+#hyperlinks {
+    color: #ffffff;
+}
+#hyperlinks:hover {
+    box-shadow: 0 0 2em rgba(196, 95, 95, 0.919);
+}
+
+/* tablet layout & design*/
+@media(min-width: 650px){
+    body {
+        padding: 1em;
+        font-size: 2em;
+        background-size: auto;
+    }
+    #app {
+        background-size: auto;
+    }
+    #headers {
+        text-align: center;
+        font-size: 1.2em;
+        margin-bottom: 3em;
+        border-radius: 2em;
+    }
+    #user_authentication {
+        padding: 2em;
+    }
+    #word_display {
+        background-color:rgba(66, 66, 66, 0.3);
+        border-radius: 2em;
+        padding: 1em;
+        text-align: center;
+        margin: 5em;
+    }
+}
+
+/* desktop layout & design */
+@media(min-width: 1000px ){
+    body {
+        text-align: center;
+        font-size: 1.8em;
+        background-size: auto;
+        padding: 2vw;
+        margin: 3vw;
+    }
+    #headers {
+        background-color: rgba(144, 70, 70, 0.2);
+        padding: 1em;
+        margin-left: -.5em;
+    }
+    #user_authentication {
+        border-radius: 2em;
+        text-align: center;
+        max-width: fit-content;
+        margin-left: 1em;
+        margin-top: -3em;
+        background-color: rgba(66, 66, 66, 0);
+    }
+    #word_display {
+        border-radius: 2em;
+        background-color: rgba(66, 66, 66, 0.3);
+        margin-top: -21.5em;
+        margin-left: 27em;
+        max-width: 50%;
+    }
+}
+
+/* sign-up page design */
+#sign_up {
+    text-align: left;
+}

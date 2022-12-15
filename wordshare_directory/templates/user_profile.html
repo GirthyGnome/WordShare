@@ -1,14 +1,14 @@
 {% extends 'base.html' %}
 
-{% block title %}-{{ user.username | capfirst }}{% endblock title %}
 {% block content %}
+    <div id='app'>
+        <h1>{{ user_profile.username }}'s profile</h1><br>
 
-    <h1>{{ user_profile.username }}</h1>
-
-    {% for word in user_profile.words.all %}
-        <div class="saved-words">
-            {{ word }}
+        <h2>Saved Words</h2>
+        {% for word in user_profile.words.all %}
+        <div class="saved_words">
+            <button @click='getSingleWord(word.id)'>{{ word }}</button>
         </div>
-    {% endfor %}
-
+        {% endfor %}
+    </div>
 {% endblock content %}

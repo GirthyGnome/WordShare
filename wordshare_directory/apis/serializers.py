@@ -8,7 +8,14 @@ class UserDefinedWordSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = UsersDefinedWord
-        fields = ('__all__')
+        fields = (
+            "word",
+            "word_definition",
+            "word_pronounciation",
+            "word_etymology",
+            "word_origin_date",
+            "user",
+        )
 
 class UserSerializer(serializers.ModelSerializer):
     words_detail = UserDefinedWordSerializer(many=True, read_only=True, source='words')
