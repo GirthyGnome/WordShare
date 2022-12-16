@@ -13,39 +13,46 @@
         <h1>WordShare</h1>
       </div>
       {% if user.is_authenticated %}
-        <h3><a href="{% url 'users_wordshare:profile' user.username %}" id='hyperlinks'>{{ user.username }}</a></h3>
+        <h3><a href="{% url 'users_wordshare:profile' user.username %}" id='hyperlinks'>{{ user.username|capfirst }}</a></h3>
         {% comment %} <a href="{% url 'home' %}">Home</a> {% endcomment %}
         <p><a href="{% url 'logout' %}" id='hyperlinks'>Logout</a><p>
       {% else %}
-        <p>You are not logged in<br><br><a href="{% url 'login' %}">Login</a><br><br><a href="{% url 'users_wordshare:signup' %}">Sign Up</a></p>
+        <p>You are not logged in</p>
+        <a href="{% url 'login' %}" id='hyperlinks'>Login</a><br><a href="{% url 'users_wordshare:signup' %}" id='hyperlinks'>Sign Up</a>
       {% endif %}   
     </div>
 
     <div id="word_display">
 
       <div id='search_box'>
-        <div id='input'>
+        <div id='word_input'>
           <input v-model="inputWord" placeholder='type in a word'>
         </div>
         <br><button @click="getWordDefinition" id='buttons'>search</button>
       </div>
 
       <div id="search_results">
-        <dl v-for="data in currentWord">
+        <dl v-for="data in currentWord.slice(0,1)">
           <u><b><p>Definition</p></b></u>
           <p>[[ data.shortdef ]]</p>
           <u><b><p>Pronounciation</p></b></u>
           <p>[[ data.hwi.hw ]]</p>
+          <audio ref='audio' controls id='audio'>[[ data.hwi.prs[0].sound.audio ]]</audio>
           <u><b><p>Date of Origin</p></b></u>
           <p>[[ data.date ]]</p>
           <u><b><p>Etymology</p></b></u>
           <p>[[ data.et ]]</p> 
-          <div id='buttons'>
-            <button @click='saveWordDefinition'>+ add to personal list</button>
+          <div>
+            {% if user.is_authenticated %}
+            <button @click='saveWordDefinition' id='buttons'>+ add to profile</button>
+            {% endif %}  
           </div>
         </dl>
+
       </div>
+
     </div>
+    
   </div>
 </body>
 {% endblock content %}

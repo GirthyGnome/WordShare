@@ -2,13 +2,25 @@
 
 {% block content %}
     <div id='app'>
-        <h1>{{ user_profile.username }}'s profile</h1><br>
-
-        <h2>Saved Words</h2>
-        {% for word in user_profile.words.all %}
-        <div class="saved_words">
-            <button @click='getSingleWord(word.id)'>{{ word }}</button>
+        <div id='profile_header'>
+            <h1>{{ user_profile.username|capfirst }}'s profile</h1>
+            <p><a href="{% url 'home' %}" id='hyperlinks'>Home</a><p>
         </div>
-        {% endfor %}
+
+        <div v-for='word in currentUser.words_detail'>
+            <button @click='getWordInfo(word.id)' id='saved_word_buttons'>[[ word.word ]]</button>
+        </div>
+
+        <div v-if='click == true' id='user_word_display'>
+            <u><b><p>Definition</p></b></u>
+            <p>[[ word.word_definition ]]</p>
+            <u><b><p>Pronounciation</p></b></u>
+            <p>[[ word.word_pronounciation ]]</p>
+            <u><b><p>Date of Origin</p></b></u>
+            <p>[[ word.word_origin_date]]</p>
+            <u><b><p>Etymology</p></b></u>
+            <p>[[ word.word_etymology]]</p> 
+        </div>
+    
     </div>
 {% endblock content %}

@@ -2,7 +2,7 @@ body {
     scroll-behavior: smooth;
     box-sizing: border-box;
     text-align: center;
-    font-family: monospace;
+    font-family:Georgia, 'Times New Roman', Times, serif;
     font-size: 1.5em;
     background-image: url('/static/images/books.jpg');
     background-repeat:no-repeat;
@@ -12,11 +12,30 @@ body {
     padding: 1em;
     overflow-wrap: break-word;
 }
+input {
+    border-radius: 6px;
+    border-width: 3px;
+    border-color: rgb(174, 124, 124);
+    color: #000000;
+}
+audio {
+    width: 6em;
+}
+audio::-webkit-media-controls-panel {
+    background-color: rgba(144, 70, 70, 0.3);
+}
 ::placeholder {
    text-align: center; 
 }
 #app {
     background-size: auto;
+}
+#user_word_display {
+    background-color:rgba(66, 66, 66, 0.3);
+    border-radius: 2em;
+    padding: 1em;
+    text-align: center;
+    margin: 2em;
 }
 #user_authentication {
     margin-top: 1em;
@@ -33,25 +52,78 @@ body {
     margin: 2em;
 }
 #buttons {
-    font-family: 'Courier New', Courier, monospace;
+    font-weight: 600;
+    font-size: medium;
     background-color: rgba(205, 141, 141, 0.5);
     color: #ffffff;
-    padding-left: 2.3rem;
-    padding-right: 2.3rem;
+    padding-top: .25em;
+    padding-bottom: .25em;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
     transition: all .5s ease;
     border-radius: 1em;
     border-color: rgba(66, 66, 66, 0.5);
 }
 #buttons:hover {
-    box-shadow: 0 0 2em rgba(196, 95, 95, 0.919);
+    transition: all .5s ease;
+    box-shadow: 0 0 1em #0000009c;
+}
+#saved_word_buttons {
+    text-align: center;
+    display: inline-block;
+    font-weight: 600;
+    font-size: medium;
+    background-color: rgba(205, 141, 141, 0.5);
+    color: #ffffff;
+    margin: .5em;
+    padding-top: .25em;
+    padding-bottom: .25em;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    transition: all .5s ease;
+    border-radius: 2em;
+    border-color: rgba(66, 66, 66, 0.5);
+}
+#saved_word_buttons:hover {
+    transition: all .5s ease;
+    box-shadow: 0 0 2em #0000009c;
 }
 #hyperlinks {
     color: #ffffff;
 }
 #hyperlinks:hover {
-    box-shadow: 0 0 2em rgba(196, 95, 95, 0.919);
+    color: rgba(205, 141, 141, 1);
+    transition: all .5s ease;
+    text-shadow: 0 0 3em #000000;
 }
-
+/* sign-up page design */
+#sign_up {
+    text-align: left;
+}
+/* user_profile page design*/
+#profile_header {
+    background-color: rgba(144, 70, 70, 0.2);
+    border-radius: 1em;
+    padding: 1em;
+}
+#word_buttons {
+    height: 2em;
+    width: 15em;
+    font-weight: 600;
+    font-size: large;
+    background-color: rgba(205, 141, 141, 0.5);
+    color: #ffffff;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    margin-right: 2.5em;
+    transition: all .5s ease;
+    border-radius: 2em;
+    border-color: rgba(66, 66, 66, 0.5);
+}
+#word_buttons:hover {
+    transition: all .5s ease;
+    box-shadow: 0 0 1em #0000009c;
+}
 /* tablet layout & design*/
 @media(min-width: 650px){
     body {
@@ -78,8 +150,25 @@ body {
         text-align: center;
         margin: 5em;
     }
+    #saved_word_buttons {
+        text-align: center;
+        display: inline-block;
+        float: left;
+        font-weight: 600;
+        font-size: medium;
+        background-color: rgba(205, 141, 141, 0.5);
+        color: #ffffff;
+        margin-top: 1em;
+        margin: .5em;
+        padding-top: .25em;
+        padding-bottom: .25em;
+        padding-left: 2.5rem;
+        padding-right: 2.5rem;
+        transition: all .5s ease;
+        border-radius: 1em;
+        border-color: rgba(66, 66, 66, 0.5);
+    }
 }
-
 /* desktop layout & design */
 @media(min-width: 1000px ){
     body {
@@ -93,6 +182,7 @@ body {
         background-color: rgba(144, 70, 70, 0.2);
         padding: 1em;
         margin-left: -.5em;
+        margin-top: 2em;
     }
     #user_authentication {
         border-radius: 2em;
@@ -105,13 +195,43 @@ body {
     #word_display {
         border-radius: 2em;
         background-color: rgba(66, 66, 66, 0.3);
-        margin-top: -21.5em;
+        margin-top: -25.3em;
         margin-left: 27em;
         max-width: 50%;
     }
-}
+    #saved_word_buttons {
+        text-align: center;
+        display: inline-block;
+        font-weight: 600;
+        font-size: medium;
+        background-color: rgba(205, 141, 141, 0.5);
+        color: #ffffff;
+        margin: .5em;
+        padding-top: .25em;
+        padding-bottom: .25em;
+        padding-left: 2.5rem;
+        padding-right: 2.5rem;
+        transition: all .5s ease;
+        border-radius: 1em;
+        border-color: rgba(66, 66, 66, 0.5);
+    }
 
-/* sign-up page design */
-#sign_up {
-    text-align: left;
+#word_buttons {
+    height: 2em;
+    width: 15em;
+    font-weight: 600;
+    font-size: large;
+    background-color: rgba(205, 141, 141, 0.5);
+    color: #ffffff;
+    padding-left: 3rem;
+    padding-right: 3rem;
+    margin-right: 2.5em;
+    transition: all .5s ease;
+    border-radius: 2em;
+    border-color: rgba(66, 66, 66, 0.5);
+}
+#word_buttons:hover {
+    transition: all .5s ease;
+    box-shadow: 0 0 1em #0000009c;
+}
 }

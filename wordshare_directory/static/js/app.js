@@ -6,11 +6,15 @@ const vm = new Vue({
         currentWord: '',
         savedWord: '',
         word: '',
+        
+        click: false,
+
         currentUser: '',
 
         usersEndPoint: '/api/v1/users/',
         wordsEndPoint: '/api/v1/words/',
         currentUserEndPoint: '/api/v1/current-user/',
+        
         csrf_token: '',
     },
     methods: {
@@ -44,22 +48,23 @@ const vm = new Vue({
                     "word_origin_date": this.currentWord[0].date,
                     "user": this.currentUser.id
                 },
-            }).then((response) => {
-                // console.log(response)
-                // console.log('saveWordDefinition response:',response.data)
+            }).then(() => {
+                this.inputWord = ''
+                this.clearWord()
             }).catch(error => {
                 // console.log('saveWordDefinition error:', error)
                 // console.log('saveWordDefinition error:', error.response)
             })
         },
-        getSingleWord: function(id) {
+        getWordInfo: function(payload) {
+            this.click = true
             axios({
                 method: 'GET',
-                url: this.urlEndPoint + id
+                url: this.wordsEndPoint + payload
             }).then(response => {
                 this.word = response.data
             }).catch(error => {
-                // console.log(error.response),
+                console.log(error.response)
                 // console.log(error.response.data)
             })
         },
@@ -74,7 +79,10 @@ const vm = new Vue({
                 // console.log(error.response)
                 // console.log(error.response.data)
             })
-        }
+        },
+        clearWord: function() {
+            this.currentWord = ''
+        },
     },
     mounted: function() {
         this.csrf_token = document.querySelector("input[name=csrfmiddlewaretoken]").value

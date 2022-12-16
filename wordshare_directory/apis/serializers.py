@@ -9,6 +9,7 @@ class UserDefinedWordSerializer(serializers.ModelSerializer):
     class Meta:
         model = UsersDefinedWord
         fields = (
+            "id",
             "word",
             "word_definition",
             "word_pronounciation",
